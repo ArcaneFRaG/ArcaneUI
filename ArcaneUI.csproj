@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <!-- Optional machine-local override. Copy ArcaneUI.Local.props.example to ArcaneUI.Local.props. -->
+  <Import Project="ArcaneUI.Local.props" Condition="Exists('ArcaneUI.Local.props')" />
+  <PropertyGroup>
+    <ErenshorDir Condition="'$(ErenshorDir)' == '' and Exists('D:\SteamLibrary\steamapps\common\Erenshor\Erenshor_Data\Managed\Assembly-CSharp.dll')">D:\SteamLibrary\steamapps\common\Erenshor</ErenshorDir>
+    <ErenshorDir Condition="'$(ErenshorDir)' == '' and Exists('C:\Program Files (x86)\Steam\steamapps\common\Erenshor\Erenshor_Data\Managed\Assembly-CSharp.dll')">C:\Program Files (x86)\Steam\steamapps\common\Erenshor</ErenshorDir>
+    <ErenshorManagedDir>$(ErenshorDir)\Erenshor_Data\Managed</ErenshorManagedDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{888989AC-58B1-4896-8CD6-A435C8C0E4E9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ArcaneUI</RootNamespace>
+    <AssemblyName>ArcaneUI</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(ErenshorManagedDir)\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(ErenshorDir)\BepInEx\core\0Harmony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Lunaris">
+      <HintPath>$(ErenshorDir)\Lunaris.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>$(ErenshorManagedDir)\Unity.TextMeshPro.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(ErenshorManagedDir)\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(ErenshorManagedDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>$(ErenshorManagedDir)\UnityEngine.AnimationModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>$(ErenshorManagedDir)\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>$(ErenshorManagedDir)\UnityEngine.JSONSerializeModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>$(ErenshorManagedDir)\UnityEngine.Physics2DModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(ErenshorManagedDir)\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>$(ErenshorManagedDir)\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(ErenshorManagedDir)\UnityEngine.UI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>$(ErenshorManagedDir)\UnityEngine.UIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>$(ErenshorManagedDir)\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Modules\CharacterSheet\Configuration\CharacterSheetSettings.cs" />
+    <Compile Include="Modules\CharacterSheet\Native\NativeCharacterSheetDecorator.cs" />
+    <Compile Include="Modules\CharacterSheet\Native\CharacterSheetLiveOverview.cs" />
+    <Compile Include="Modules\CharacterSheet\Native\CharacterSheetBoundedView.cs" />
+    <Compile Include="Modules\CharacterSheet\Native\CharacterSheetAscensionWeb.cs" />
+    <Compile Include="Modules\CharacterSheet\Native\CharacterSheetCosmeticWardrobe.cs" />
+    <Compile Include="Modules\CharacterSheet\Native\CharacterSheetModelPreview.cs" />
+    <Compile Include="Modules\EnemyTracker\Configuration\EnemyTrackerSettings.cs" />
+    <Compile Include="Modules\EnemyTracker\Configuration\EnemyTrackerVisualStyle.cs" />
+    <Compile Include="Modules\EnemyTracker\Native\NativeEnemyTrackerBridge.cs" />
+    <Compile Include="Modules\EnemyTracker\UI\ArcaneUiEnemyTracker.cs" />
+    <Compile Include="Framework\Configuration\UI\ArcaneUiSettingsWindow.EnemyTracker.cs" />
+    <Compile Include="Framework\NativeUI\Status\NativeBuffDebuffVisibility.cs" />
+    <Compile Include="Modules\Minimap\Configuration\MinimapSettings.cs" />
+    <Compile Include="Modules\Minimap\Native\MinimapFrameGraphic.cs" />
+    <Compile Include="Modules\Minimap\Native\NativeMinimapPresentation.cs" />
+    <Compile Include="Modules\Minimap\Native\ArcaneUiMinimapReplacement.cs" />
+    <Compile Include="Modules\Minimap\Native\MinimapMaskGeometry.cs" />
+    <Compile Include="Framework\Configuration\UI\ArcaneUiSettingsWindow.Minimap.cs" />
+    <Compile Include="Modules\Chat\Configuration\ChatSettings.cs" />
+    <Compile Include="Modules\Chat\Configuration\ChatLayoutPresets.cs" />
+    <Compile Include="Modules\Chat\Native\NativeChatPresentation.cs" />
+    <Compile Include="Modules\Chat\Native\NativeChatPresentation.Advanced.cs" />
+    <Compile Include="Modules\Inventory\Configuration\InventorySettings.cs" />
+    <Compile Include="Modules\Inventory\Native\NativeInventoryDecorator.cs" />
+    <Compile Include="Framework\Configuration\UI\ArcaneUiSettingsWindow.Chat.cs" />
+    <Compile Include="Framework\Configuration\UI\ArcaneUiSettingsWindow.Inventory.cs" />
+    <Compile Include="Framework\Configuration\UI\ArcaneUiSettingsWindow.CharacterSheet.cs" />
+    <Compile Include="Modules\CooldownAuras\Configuration\CooldownAuraSettings.cs" />
+    <Compile Include="Modules\CooldownAuras\Editor\CustomAuraLibrary.cs" />
+    <Compile Include="Modules\CooldownAuras\Editor\CustomAuraTemplates.cs" />
+    <Compile Include="Modules\CooldownAuras\UI\CustomAuraAnimation.cs" />
+    <Compile Include="Modules\CooldownAuras\UI\ArcaneUiCustomAuraHud.cs" />
+    <Compile Include="Modules\CooldownAuras\UI\ArcaneUiAuraShapeGraphic.cs" />
+    <Compile Include="Modules\CooldownAuras\UI\ArcaneUiAuraResourceReader.cs" />
+    <Compile Include="Modules\CooldownAuras\UI\ArcaneUiAuraExpression.cs" />
+    <Compile Include="Modules\CooldownAuras\UI\ArcaneUiWildfireResourceReader.cs" />
+    <Compile Include="Modules\CooldownAuras\UI\ArcaneUiAuraSpellArtwork.cs" />
+    <Compile Include="Framework\Configuration\UI\ArcaneUiSettingsWindow.AuraEditor.cs" />
+    <Compile Include="Framework\Configuration\UI\ArcaneUiSettingsWindow.Dropdowns.cs" />
+    <Compile Include="Modules\CooldownAuras\UI\ArcaneUiCooldownAuraTracker.cs" />
+    <Compile Include="Framework\Configuration\UI\ArcaneUiSettingsWindow.CooldownAuras.cs" />
+    <Compile Include="Modules\Nameplates\Configuration\NameplateSettings.cs" />
+    <Compile Include="Modules\Nameplates\Native\NativeOverheadNameplateBridge.cs" />
+    <Compile Include="Modules\Nameplates\UI\ArcaneUiOverheadNameplates.cs" />
+    <Compile Include="Modules\Nameplates\Native\NpcRoleTagResolver.cs" />
+    <Compile Include="Modules\Experience\Configuration\ExperienceBarSettings.cs" />
+    <Compile Include="Modules\Experience\UI\ExperienceProgressReader.cs" />
+    <Compile Include="Modules\Experience\UI\ArcaneUiExperienceBar.cs" />
+    <Compile Include="Framework\Configuration\UI\ArcaneUiSettingsWindow.Experience.cs" />
+    <Compile Include="Modules\ActionBars\Configuration\ActionBarStyleSettings.cs" />
+    <Compile Include="Modules\ActionBars\Configuration\ActionBarPlanSettings.cs" />
+    <Compile Include="Modules\ActionBars\Configuration\ActionBarLayoutPresets.cs" />
+    <Compile Include="Modules\ActionBars\Configuration\ActionBarIndependentAssignments.cs" />
+    <Compile Include="Modules\ActionBars\UI\ArcaneUiActionDropTarget.cs" />
+    <Compile Include="Modules\ActionBars\UI\ArcaneUiNativeBarMirror.cs" />
+    <Compile Include="Modules\ActionBars\Configuration\ActionBarMirrorSettings.cs" />
+    <Compile Include="Modules\ActionBars\Native\NativeActionBarDiscovery.cs" />
+    <Compile Include="Modules\ActionBars\Native\NativeAltHotbarSwapGuard.cs" />
+    <Compile Include="Modules\ActionBars\Native\NativeExtraHotkeySlots.cs" />
+    <Compile Include="Modules\ActionBars\Native\NativeSpellCooldownObserver.cs" />
+    <Compile Include="Modules\ActionBars\Native\NativeActionBarVisualBridge.cs" />
+    <Compile Include="Framework\Configuration\UI\ArcaneUiSettingsWindow.ActionBars.cs" />
+    <Compile Include="Modules\UnitFrames\Player\PlayerFrameSettings.cs" />
+    <Compile Include="Modules\UnitFrames\Player\ArcaneUiPlayerFrame.cs" />
+    <Compile Include="Modules\UnitFrames\Player\ArcaneUiFOTFResources.cs" />
+    <Compile Include="Modules\UnitFrames\Player\FOTFResourceAppearance.cs" />
+    <Compile Include="Modules\UnitFrames\Target\TargetFrameSettings.cs" />
+    <Compile Include="Modules\UnitFrames\Target\ArcaneUiTargetFrame.cs" />
+    <Compile Include="Modules\UnitFrames\Target\TargetNativeReadAdapter.cs" />
+    <Compile Include="Modules\UnitFrames\Target\TargetCastStartObserver.cs" />
+    <Compile Include="Modules\UnitFrames\Target\ArcaneUiTargetAuras.cs" />
+    <Compile Include="Modules\UnitFrames\Target\TargetHealthColourResolver.cs" />
+    <Compile Include="Framework\NativeUI\Target\NativeTargetHudBridge.cs" />
+    <Compile Include="Framework\NativeUI\Player\NativePlayerHudBridge.cs" />
+    <Compile Include="Framework\NativeUI\Player\NativeCastBarBridge.cs" />
+    <Compile Include="Framework\NativeUI\ArcaneUiModalInputGuard.cs" />
+    <Compile Include="Framework\Theming\Rendering\FOTFAbsorbInterop.cs" />
+    <Compile Include="Framework\Theming\Rendering\FOTFAbsorbOverlay.cs" />
+    <Compile Include="Framework\Theming\Rendering\LightHealthBarContrast.cs" />
+    <Compile Include="Framework\Theming\Rendering\ArcaneUiFrameFineTuning.cs" />
+    <Compile Include="Framework\Theming\Rendering\ArcaneUiUnitFrameView.cs" />
+    <Compile Include="Framework\Theming\Rendering\ArcaneUiNameFormatting.cs" />
+    <Compile Include="Framework\Theming\Rendering\ArcaneUiTextTagStyle.cs" />
+    <Compile Include="Framework\Theming\Rendering\ArcaneUiBarLayout.cs" />
+    <Compile Include="Framework\Modules\IUiModule.cs" />
+    <Compile Include="Framework\Canvas\ArcaneCanvasManager.cs" />
+    <Compile Include="Framework\Theming\ThemeManager.cs" />
+    <Compile Include="Framework\Theming\ArcaneUiGlobalTypography.cs" />
+    <Compile Include="Framework\Theming\ArcaneUiStyleService.cs" />
+    <Compile Include="Framework\Theming\Rendering\ArcaneUiFrameRenderer.cs" />
+    <Compile Include="Framework\Theming\Rendering\ArcaneUiStyledSurface.cs" />
+    <Compile Include="Framework\Modules\LegacyUiModule.cs" />
+    <Compile Include="Framework\ArcaneUiRuntime.cs" />
+    <Compile Include="Framework\Configuration\ArcaneUiPreferences.cs" />
+    <Compile Include="Framework\Configuration\UI\ArcaneUiPreviewHoverHighlight.cs" />
+    <Compile Include="Framework\Configuration\UI\ArcaneUiControls.cs" />
+    <Compile Include="Framework\Configuration\UI\ArcaneUiColorPickerDialog.cs" />
+    <Compile Include="Framework\Configuration\UI\ArcaneUiSettingsWindow.AdvancedFrames.cs" />
+    <Compile Include="Framework\Configuration\UI\ArcaneUiSettingsWindow.cs" />
+    <Compile Include="Framework\Configuration\UI\ArcaneUiSettingsWindow.CompactRows.cs" />
+    <Compile Include="Framework\Configuration\UI\ArcaneUiSettingsWindow.FOTF.cs" />
+    <Compile Include="Framework\Configuration\UI\ArcaneUiSettingsWindow.Shell.cs" />
+    <Compile Include="Framework\Configuration\UI\ArcaneUiSettingsWindow.NameplatePreview.cs" />
+    <Compile Include="Framework\Configuration\UI\UiWindowDragHandle.cs" />
+    <Compile Include="Framework\Configuration\Commands\ArcaneUiChatCommand.cs" />
+    <Compile Include="Framework\Modules\UiModuleRegistry.cs" />
+    <Compile Include="Framework\Modules\ArcaneUiModuleSettings.cs" />
+    <Compile Include="Framework\Layout\LayoutElement.cs" />
+    <Compile Include="Framework\Layout\GridSnap.cs" />
+    <Compile Include="Framework\Layout\Editor\ArcaneUiLayoutEditor.cs" />
+    <Compile Include="Framework\Layout\Editor\ArcaneUiLayoutMover.cs" />
+    <Compile Include="Framework\Theming\UiTheme.cs" />
+    <Compile Include="Framework\Theming\ThemeCatalog.cs" />
+    <Compile Include="Framework\NativeUI\NativeUiReplacementState.cs" />
+    <Compile Include="Core\Plugin.cs" />
+    <Compile Include="Modules\RaidFrames\Configuration\RaidFramesSettings.cs" />
+    <Compile Include="Modules\PartyFrames\Configuration\PartyFramesSettings.cs" />
+    <Compile Include="Modules\RaidManager\Native\NativeRaidControlProxy.cs" />
+    <Compile Include="Modules\RaidManager\Native\NativeRaidRoleBackend.cs" />
+    <Compile Include="Modules\RaidManager\Native\NativeRaidHealingBackend.cs" />
+    <Compile Include="Modules\RaidManager\Native\NativeRaidGroupTaskBackend.cs" />
+    <Compile Include="Modules\RaidManager\Native\NativeRaidBattleRezBackend.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Modules\RaidManager\Commands\RaidGroupCommands.cs" />
+    <Compile Include="Modules\RaidFrames\Layout\RaidLayoutPersistence.cs" />
+    <Compile Include="Framework\Theming\Legacy\RaidClassColors.cs" />
+    <Compile Include="Framework\Theming\Legacy\UnitFrameAppearance.cs" />
+    <Compile Include="Modules\RaidManager\UI\RaidControlPanel.cs" />
+    <Compile Include="Modules\RaidManager\UI\RaidControlPanelDragHandler.cs" />
+    <Compile Include="Modules\RaidManager\UI\RaidManagerPopupLayout.cs" />
+    <Compile Include="Modules\RaidManager\UI\RaidMemberRolesPanel.cs" />
+    <Compile Include="Modules\RaidManager\UI\RaidHealingMatrixPanel.cs" />
+    <Compile Include="Modules\PartyFrames\Native\NativeGroupFramesVisibility.cs" />
+    <Compile Include="Modules\PartyFrames\UI\PartyFramesDragHandler.cs" />
+    <Compile Include="Modules\PartyFrames\UI\PartyFramesUI.cs" />
+    <Compile Include="Modules\UnitFrames\Interactions\ClickCastingManager.cs" />
+    <Compile Include="Modules\UnitFrames\Interactions\HealingSpellCatalog.cs" />
+    <Compile Include="Modules\RaidManager\Native\RaidManagerVisibility.cs" />
+    <Compile Include="Modules\RaidManager\Native\NativeRaidSliderSync.cs" />
+    <Compile Include="Framework\NativeUI\Legacy\NativeUiLayering.cs" />
+    <Compile Include="Modules\RaidFrames\UI\RaidFramesDragHandler.cs" />
+    <Compile Include="Modules\RaidFrames\UI\RaidMemberDragHandler.cs" />
+    <Compile Include="Modules\RaidFrames\UI\RaidFramesUI.cs" />
+    <Compile Include="Modules\RaidFrames\UI\RaidMemberFrame.cs" />
+    <Compile Include="Modules\UnitFrames\Interactions\UnitFrameInteraction.cs" />
+    <Compile Include="Modules\UnitFrames\Interactions\UnitFrameMouseoverState.cs" />
+    <Compile Include="Modules\UnitFrames\Interactions\UnitFrameMouseoverCastingPatch.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
